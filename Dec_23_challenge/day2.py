@@ -14,7 +14,7 @@ class Solution:
         given_freq = Counter(chars)
         for word in words:
             word_freq = Counter(word)
-            is_good = reduce(mul, [1 if word_freq[chr(ord('a')+i)] <= given_freq[chr(ord('a')+i)] else 0 for i in range(26)],1)
+            is_good = all(word_freq[chr(ord('a')+i)] <= given_freq[chr(ord('a')+i)] for i in range(26))
             ans += len(word) if is_good else 0
         return ans
 
